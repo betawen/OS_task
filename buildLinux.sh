@@ -113,25 +113,25 @@ cp -r /lib64/security/pam_filter $1/lib64/security/
 
 # cp driver
 echo "copy disk  driver..."
-mkdir -p $1/lib/modules/2.6.32-696.el6.x86_64/kernel/drivers/message/fusion/
-cp /lib/modules/2.6.32-696.el6.x86_64/kernel/drivers/message/fusion/mptspi.ko $1/lib/modules/2.6.32-696.el6.x86_64/kernel/drivers/message/fusion/
-cp /lib/modules/2.6.32-696.el6.x86_64/kernel/drivers/message/fusion/mptbase.ko $1/lib/modules/2.6.32-696.el6.x86_64/kernel/drivers/message/fusion/
-cp /lib/modules/2.6.32-696.el6.x86_64/kernel/drivers/message/fusion/mptscsih.ko $1/lib/modules/2.6.32-696.el6.x86_64/kernel/drivers/message/fusion/
+mkdir -p $1/lib/modules/2.6.32-754.el6.x86_64/kernel/drivers/message/fusion/
+cp /lib/modules/2.6.32-754.el6.x86_64/kernel/drivers/message/fusion/mptspi.ko $1/lib/modules/2.6.32-754.el6.x86_64/kernel/drivers/message/fusion/
+cp /lib/modules/2.6.32-754.el6.x86_64/kernel/drivers/message/fusion/mptbase.ko $1/lib/modules/2.6.32-754.el6.x86_64/kernel/drivers/message/fusion/
+cp /lib/modules/2.6.32-754.el6.x86_64/kernel/drivers/message/fusion/mptscsih.ko $1/lib/modules/2.6.32-754.el6.x86_64/kernel/drivers/message/fusion/
 
-mkdir -p $1/lib/modules/2.6.32-696.el6.x86_64/kernel/drivers/scsi/
-cp /lib/modules/2.6.32-696.el6.x86_64/kernel/drivers/scsi/scsi_transport_spi.ko $1/lib/modules/2.6.32-696.el6.x86_64/kernel/drivers/scsi/
-cp /lib/modules/2.6.32-696.el6.x86_64/kernel/drivers/scsi/sd_mod.ko $1/lib/modules/2.6.32-696.el6.x86_64/kernel/drivers/scsi/
+mkdir -p $1/lib/modules/2.6.32-754.el6.x86_64/kernel/drivers/scsi/
+cp /lib/modules/2.6.32-754.el6.x86_64/kernel/drivers/scsi/scsi_transport_spi.ko $1/lib/modules/2.6.32-754.el6.x86_64/kernel/drivers/scsi/
+cp /lib/modules/2.6.32-754.el6.x86_64/kernel/drivers/scsi/sd_mod.ko $1/lib/modules/2.6.32-754.el6.x86_64/kernel/drivers/scsi/
 
-mkdir -p $1/lib/modules/2.6.32-696.el6.x86_64/kernel/lib/
-cp  /lib/modules/2.6.32-696.el6.x86_64/kernel/lib/crc-t10dif.ko $1/lib/modules/2.6.32-696.el6.x86_64/kernel/lib/
+mkdir -p $1/lib/modules/2.6.32-754.el6.x86_64/kernel/lib/
+cp  /lib/modules/2.6.32-754.el6.x86_64/kernel/lib/crc-t10dif.ko $1/lib/modules/2.6.32-754.el6.x86_64/kernel/lib/
 
 echo "copy filesystems  driver..."
-mkdir -p $1/lib/modules/2.6.32-696.el6.x86_64/kernel/fs/
-cp /lib/modules/2.6.32-696.el6.x86_64/kernel/fs/mbcache.ko $1/lib/modules/2.6.32-696.el6.x86_64/kernel/fs/
-mkdir -p $1/lib/modules/2.6.32-696.el6.x86_64/kernel/fs/jbd2/
-cp /lib/modules/2.6.32-696.el6.x86_64/kernel/fs/jbd2/jbd2.ko $1/lib/modules/2.6.32-696.el6.x86_64/kernel/fs/jbd2/
-mkdir -p $1/lib/modules/2.6.32-696.el6.x86_64/kernel/fs/ext4/
-cp /lib/modules/2.6.32-696.el6.x86_64/kernel/fs/ext4/ext4.ko $1/lib/modules/2.6.32-696.el6.x86_64/kernel/fs/ext4/
+mkdir -p $1/lib/modules/2.6.32-754.el6.x86_64/kernel/fs/
+cp /lib/modules/2.6.32-754.el6.x86_64/kernel/fs/mbcache.ko $1/lib/modules/2.6.32-754.el6.x86_64/kernel/fs/
+mkdir -p $1/lib/modules/2.6.32-754.el6.x86_64/kernel/fs/jbd2/
+cp /lib/modules/2.6.32-754.el6.x86_64/kernel/fs/jbd2/jbd2.ko $1/lib/modules/2.6.32-754.el6.x86_64/kernel/fs/jbd2/
+mkdir -p $1/lib/modules/2.6.32-754.el6.x86_64/kernel/fs/ext4/
+cp /lib/modules/2.6.32-754.el6.x86_64/kernel/fs/ext4/ext4.ko $1/lib/modules/2.6.32-754.el6.x86_64/kernel/fs/ext4/
 
 
 # create init
@@ -141,15 +141,15 @@ echo "#!/bin/bash" >> $1/init
 echo "" >> $1/init
 echo "export PATH=/sbin:/bin:/usr/sbin:/usr/bin" >> $1/init
 echo "" >> $1/init
-echo "insmod /lib/modules/2.6.32-696.el6.x86_64/kernel/drivers/scsi/scsi_transport_spi.ko" >> $1/init
-echo "insmod /lib/modules/2.6.32-696.el6.x86_64/kernel/drivers/message/fusion/mptbase.ko" >> $1/init
-echo "insmod /lib/modules/2.6.32-696.el6.x86_64/kernel/drivers/message/fusion/mptscsih.ko" >> $1/init
-echo "insmod /lib/modules/2.6.32-696.el6.x86_64/kernel/drivers/message/fusion/mptspi.ko" >> $1/init
-echo "insmod /lib/modules/2.6.32-696.el6.x86_64/kernel/lib/crc-t10dif.ko" >> $1/init
-echo "insmod /lib/modules/2.6.32-696.el6.x86_64/kernel/drivers/scsi/sd_mod.ko" >> $1/init
-echo "insmod /lib/modules/2.6.32-696.el6.x86_64/kernel/fs/mbcache.ko" >> $1/init
-echo "insmod /lib/modules/2.6.32-696.el6.x86_64/kernel/fs/jbd2/jbd2.ko" >> $1/init
-echo "insmod /lib/modules/2.6.32-696.el6.x86_64/kernel/fs/ext4/ext4.ko" >> $1/init
+echo "insmod /lib/modules/2.6.32-754.el6.x86_64/kernel/drivers/scsi/scsi_transport_spi.ko" >> $1/init
+echo "insmod /lib/modules/2.6.32-754.el6.x86_64/kernel/drivers/message/fusion/mptbase.ko" >> $1/init
+echo "insmod /lib/modules/2.6.32-754.el6.x86_64/kernel/drivers/message/fusion/mptscsih.ko" >> $1/init
+echo "insmod /lib/modules/2.6.32-754.el6.x86_64/kernel/drivers/message/fusion/mptspi.ko" >> $1/init
+echo "insmod /lib/modules/2.6.32-754.el6.x86_64/kernel/lib/crc-t10dif.ko" >> $1/init
+echo "insmod /lib/modules/2.6.32-754.el6.x86_64/kernel/drivers/scsi/sd_mod.ko" >> $1/init
+echo "insmod /lib/modules/2.6.32-754.el6.x86_64/kernel/fs/mbcache.ko" >> $1/init
+echo "insmod /lib/modules/2.6.32-754.el6.x86_64/kernel/fs/jbd2/jbd2.ko" >> $1/init
+echo "insmod /lib/modules/2.6.32-754.el6.x86_64/kernel/fs/ext4/ext4.ko" >> $1/init
 echo "" >> $1/init
 echo "mount -t proc proc /proc > /dev/null 2>&1" >> $1/init
 echo "mount -t sysfs sysfs /sys > /dev/null 2>&1" >> $1/init
